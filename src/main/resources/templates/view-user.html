@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title th:text="${user.fullName}"></title>
+</head>
+
+<body>
+
+<div class="topnav">
+  <a class="active"  href="/new_user.html">Recipe book</a>
+  <a th:text="#{title11}" href="/list.html">Show List</a> | <a th:text="#{title12}" href="/new_user.html">Create New</a>
+</div>
+
+<div class="bg-image"><img src="/img/indir.png" alt="Girl in a jacket" width="100%" height="320px"></div>
+
+<div class="bg-text">
+	<h2 th:text="${user.fullName}"></h2>
+	<table id="dobtable">
+		<tr>
+			<td th:text="#{user-title2}"></td>
+			<td th:text="${#temporals.format(user.dateOfBirth, 'dd.MM.yyyy')}"></td>
+		</tr>
+		<tr>
+			<td th:text="${user.email}"></td>
+		</tr>
+	</table>	
+  	<p>Tarif paylaşan üyelerimiz</p>
+</div>
+
+
+	<div th:if="${#lists.isEmpty(user.recipes)}">
+		<p class="small-italic" th:text="#{user-title4}"></p>
+	</div>
+	<div id='baslık'>
+	<h3 id='baslık' th:text="#{user-title5}"></h3>
+	</div>
+	<form action="/user/recipe/add" method="post" th:object="${recipe}">
+		<table id="table6">
+			<tr>
+			<div>
+			<td th:text="#{user-title6}"></td>
+				<td><input type="text" th:field="*{food}" ></td>
+				<td th:errors="*{food}" class="error" ></td>
+			</div>
+			</tr>
+			<tr>
+			<div>
+				<td th:text="#{user-title7}"></td>
+				<td><textarea type="text" rows="4" cols="30" th:field="*{ingredients}"></textarea></td>
+				<td th:errors="*{ingredients}" class="error" ></td>
+			</div>
+			</tr>
+		
+			<tr>
+			<div>
+				<td th:text="#{user-title8}"></td>
+				<td><textarea type="text" rows="7" cols="50" th:field="*{reciper}"></textarea></td>
+				<td th:errors="*{reciper}" class="error" ></td>
+		
+			</div>
+			</tr>
+				
+			<input type="hidden" th:field="*{user.id}">
+			
+		</form>
+		<div >
+		<td colspan="3"><input id="button2"  type="submit" th:value="#{title9}"></td>
+		</div>
+	</table>
+	
+	<p th:text="#{user-title3}"><b></b></p>
+	<div th:unless="${#lists.isEmpty(user.recipes)}">
+	
+		<table id="table4" background="/img/indir.png">
+			<tr th:each="r : ${user.recipes}">
+				<td><a th:href="'/user/recipe/delete/' + ${user.id} + '/' + ${r.id}"><img src="/img/delete.png" width="20"></a></td>
+				<td th:text="${r.food}"></td>
+				<td th:text="${r.ingredients}"></td>
+				<td th:text="${r.reciper}"></td>
+			</tr>
+		</table>
+	</div>
+	
+		<div class="footer2">
+  		<p>Footer</p>
+	</div>
+	
+</body>
+
+</html>

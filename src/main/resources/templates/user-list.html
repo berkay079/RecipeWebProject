@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title>List</title>
+</head>
+
+<body id="table5">
+
+<div class="topnav">
+  <a class="active" href="/new_user.html">Recipe book</a>
+  <a th:text="#{title11}" href="/list.html">Show List</a> | <a th:text="#{title12}" href="/new_user.html">Create New</a>
+</div>
+
+	<h2 th:text="#{new-user-title}"></h2>
+	<p th:text="#{new-user-title2}"></p>
+	<div th:unless="${#lists.isEmpty(users)}">
+		<table id="table7">
+			<tr>
+				<th></th>
+				<th th:text="#{new-user-title3}"></th>
+				<th th:text="#{new-user-title4}"></th>
+				<th th:text="#{new-user-title5}"></th>
+				<th th:text="#{new-user-title6}"></th>
+
+				<th></th>
+			</tr>
+			<tr th:each="u : ${users}">
+				<td><a th:href="'/user/delete/' + ${u.id}"><img src="/img/delete.png" width="20"></a></td>
+				<td th:text="${u.id}"></td>
+				<td th:text="${u.firstName}"></td>
+				<td th:text="${u.lastName}"></td>
+				<td th:text="${u.email}"></td>
+				<td><a th:text="#{new-user-title8}" th:href="'/user/' + ${u.id}">More</a></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div th:if="${#lists.isEmpty(users)}">
+		<p class="small-italic">No data found.</p>
+	</div>
+	
+	<div class="footer2">
+  		<p>Footer</p>
+	</div>
+
+</body>
+
+</html>
+

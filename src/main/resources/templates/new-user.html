@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title th:text="#{title}"></title>
+</head>
+
+<body>
+<div class="topnav">
+  <a class="active" href="/new_user.html">Recipe book</a>
+  <a th:text="#{title11}" href="/list.html">Show List</a>
+  <a id="kaydır" href="new_user.html?language=tr"><img id="bayrak2" src="/img/turk.png" width="35" height="35"></a> <a href="new_user.html?language=en"><img id="bayrak2" src="/img/ingliz.png" width="35" height="35"></a>
+</div>
+
+<div id="bosluk">
+	<img src="/img/indir.png" alt="Girl in a jacket" width="100%" height="320px">
+</div>
+
+
+<div id="table2">
+	<div id="tag">
+	<h2 th:text="#{title2}"></h2>
+	<h2 th:text="#{title3}"></h2>
+	</div>
+	<p th:text="#{title4}"></p>
+	<form action="/user/add" method="post" th:object="${user}">
+		<div>
+		<table id="table3">
+			<tr>
+				<td th:text="#{title5}"></td>
+				<td><input type="text" th:field="*{firstName}"></td>
+				<td th:errors="*{firstName}" class="error"></td>
+			</tr>
+			<tr>
+				<td th:text="#{title6}"></td>
+				<td><input type="text" th:field="*{lastName}"></td>
+				<td th:errors="*{lastName}" class="error"></td>
+			</tr>
+			<tr>
+				<td th:text="#{title7}"></td>
+				<td><input type="text" th:field="*{email}"></td>
+				<td th:errors="*{email}" class="error"></td>
+			</tr>
+			<tr>
+				<td th:text="#{title8}"></td>
+				<td><input type="text" th:field="*{dateOfBirth}"></td>
+				<td th:errors="*{dateOfBirth}" class="error"></td>
+			</tr>
+			<tr>
+			</tr>
+		</table>
+		<div id="tag">
+		<td colspan="3"><input id="button"  type="submit" th:value="#{title9}"></td>
+		</div>
+		</div>
+	</form>
+<div id="tag"><p><a th:text="#{title11}" href="/list.html">Show List</a>  | <td th:text="#{title12}">Create New</td></p></div>
+	
+</div>	
+
+<div id="bosluk">
+
+</div>
+	
+<div class="footer">
+  <p>Footer</p>
+</div>
+
+
+</body>
+
+</html>
